@@ -1,5 +1,6 @@
 import pandas as pd
-
+import psutil
+import os
 
 ROOT_DIR = "/mnt/f/avito-kaggle"
 
@@ -28,3 +29,10 @@ print(
         [search_info.columns[0], search_info.columns[1], search_info.columns[2]]
     ]
 )
+
+def print_python_mem_usage():
+    process = psutil.Process(os.getpid())
+    print(f"{process.memory_info().rss:.1e}")  # in bytes
+
+
+print(print_python_mem_usage())
